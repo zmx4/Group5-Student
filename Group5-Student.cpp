@@ -106,6 +106,21 @@ int main()
 		}
 		file.close();
 	}
+	//检测日志文件是否存在,如果不存在则创建
+	if(!filesystem::exists("log.log"))
+	{
+		ofstream file("log.log");
+		file.close();
+		ofstream outFile("log.log");
+		outFile << "["<< chrono::system_clock::now()<<"]"<<"Log file created" << endl;
+		outFile.close();
+	}
+	else
+	{
+		ofstream outFile("log.log", ios::app);
+		outFile << "[" << chrono::system_clock::now() << "]" << "Data.CSV opened" << endl;
+		outFile.close();
+	}
 	// 创建一个csv对象,并将data.csv文件作为参数传入
 	rapidcsv::Document doc("data.csv");
 
@@ -153,6 +168,9 @@ int main()
 			doc.SetCell(3, row, stu.age);
 			doc.SetCell(4, row, stu.birthday);
 			doc.Save();
+			ofstream outFile("log.log", ios::app);
+			outFile << "[" << chrono::system_clock::now() << "]" << "Student " << stu.name << " added"<<"age:"<<stu.age<<"birthday:"<<stu.birthday<<"ID:"<<stu.id << endl;
+			outFile.close();
 			break;
 		}
 		case 2:
@@ -177,6 +195,9 @@ int main()
 					break;
 				}
 			}
+			ofstream outFile("log.log", ios::app);
+			outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " deleted" << endl;
+			outFile.close();
 			break;
 		}
 		case 3:
@@ -213,6 +234,9 @@ int main()
 						cin >> id;
 						doc.SetCell(2, i, id);
 						doc.Save();
+						ofstream outFile("log.log", ios::app);
+						outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " modified" << endl;
+						outFile.close();
 						break;
 					}
 				}
@@ -247,6 +271,9 @@ int main()
 						cin >> name;
 						doc.SetCell(1, i, name);
 						doc.Save();
+						ofstream outFile("log.log", ios::app);
+						outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " modified" << endl;
+						outFile.close();
 						break;
 					}
 				}
@@ -281,6 +308,9 @@ int main()
 						cin >> birthday;
 						doc.SetCell(4, i, birthday);
 						doc.Save();
+						ofstream outFile("log.log", ios::app);
+						outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " modified" << endl;
+						outFile.close();
 						break;
 					}
 				}
@@ -320,6 +350,9 @@ int main()
 						doc.SetCell(6, i, times);
 						doc.SetCell(7, i, score);
 						doc.Save();
+						ofstream outFile("log.log", ios::app);
+						outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " modified" << endl;
+						outFile.close();
 						break;
 					}
 				}
@@ -344,6 +377,9 @@ int main()
 					cout << "Subject: " << doc.GetCell<string>(5, i) << endl;
 					cout << "Times: " << doc.GetCell<int>(6, i) << endl;
 					cout << "Score: " << doc.GetCell<int>(7, i) << endl;
+					ofstream outFile("log.log", ios::app);
+					outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " queried" << endl;
+					outFile.close();
 					break;
 				}
 			}
@@ -385,6 +421,9 @@ int main()
                     outFile << l << endl;
                     }
                     outFile.close();
+					ofstream outLog("log.log", ios::app);
+					outLog << "[" << chrono::system_clock::now() << "]" << "Language had been switched to English" << endl;
+					outLog.close();
                     break;
 				}
 				case 2:
@@ -408,6 +447,9 @@ int main()
 						outFile << l << endl;
 					}
 					outFile.close();
+					ofstream outLog("log.log", ios::app);
+					outLog << "[" << chrono::system_clock::now() << "]" << "Language had been switched to Chinese" << endl;
+					outLog.close();
 					break;
 				}
 				default:
@@ -421,6 +463,9 @@ int main()
 			}
 		default:
 		{
+			ofstream outFile("log.log", ios::app);
+			outFile << "[" << chrono::system_clock::now() << "]" << "Program exited" << endl;
+			outFile.close();
 			return 0;
 		}
 		}
