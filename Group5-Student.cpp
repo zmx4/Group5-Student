@@ -119,13 +119,30 @@ int main()
 		case 1:
 		{
 			student stu;
-			cout << "Please input student name: ";
-			cin >> stu.name;
-			cout << "Please input student id: ";
-			cin >> stu.id;
+			if (languages == 0)
+			{
+				cout << "Please input student name: ";
+				cin >> stu.name;
+				cout << "Please input student id: ";
+				cin >> stu.id;
+			}
+			else if (languages == 1)
+			{
+				cout << "请输入学生姓名: ";
+				cin >> stu.name;
+				cout << "请输入学生学号: ";
+				cin >> stu.id;
+			}
 			//cout << "Please input student age: ";
 			//cin >> stu.age;
-			cout << "Please input student birthday: ";
+			if (languages == 0)
+			{
+				cout << "Please input student birthday: ";
+			}
+			else if (languages == 1)
+			{
+				cout << "请输入学生出生日期: ";
+			}
 			cin >> stu.birthday;
 			//计算年龄
 			stu.age = 2024 - stoi(stu.birthday.substr(0, 3));
@@ -141,7 +158,14 @@ int main()
 		case 2:
 		{
 			int64_t id;
-			cout << "Please input student id: ";
+			if (languages == 0)
+			{
+				cout << "Please input student id: ";
+			}
+			else if (languages == 1)
+			{
+				cout << "请输入学生学号: ";
+			}
 			cin >> id;
 			int64_t row = doc.GetRowCount();
 			for (int i = 0; i < row; i++)
@@ -164,14 +188,28 @@ int main()
 			case 1:
 			{
 				int64_t id;
-				cout << "Please input student id: ";
+				if (languages == 0)
+				{
+					cout << "Please input student id: ";
+				}
+				else if (languages == 1)
+				{
+					cout << "请输入学生学号: ";
+				}
 				cin >> id;
 				int64_t row = doc.GetRowCount();
 				for (int i = 0; i < row; i++)
 				{
 					if (doc.GetCell<int64_t>(2, i) == id)
 					{
-						cout << "Please input new student id: ";
+						if (languages == 0)
+						{
+							cout << "Please input new student id: ";
+						}
+						else if (languages == 1)
+						{
+							cout << "请输入新的学生学号: ";
+						}
 						cin >> id;
 						doc.SetCell(2, i, id);
 						doc.Save();
@@ -183,7 +221,14 @@ int main()
 			case 2:
 			{
 				int64_t id;
-				cout << "Please input student id: ";
+				if (languages == 0)
+				{
+					cout << "Please input student id: ";
+				}
+				else if (languages == 1)
+				{
+					cout << "请输入学生学号: ";
+				}
 				cin >> id;
 				int64_t row = doc.GetRowCount();
 				for (int i = 0; i < row; i++)
@@ -191,7 +236,14 @@ int main()
 					if (doc.GetCell<int64_t>(2, i) == id)
 					{
 						string name;
-						cout << "Please input new student name: ";
+						if (languages == 0)
+						{
+							cout << "Please input new student name: ";
+						}
+						else if (languages == 1)
+						{
+							cout << "请输入新的学生姓名: ";
+						}
 						cin >> name;
 						doc.SetCell(1, i, name);
 						doc.Save();
@@ -203,7 +255,14 @@ int main()
 			case 3:
 			{
 				int64_t id;
-				cout << "Please input student id: ";
+				if (languages == 0)
+				{
+					cout << "Please input student id: ";
+				}
+				else if (languages == 1)
+				{
+					cout << "请输入学生学号: ";
+				}
 				cin >> id;
 				int64_t row = doc.GetRowCount();
 				for (int i = 0; i < row; i++)
@@ -211,7 +270,14 @@ int main()
 					if (doc.GetCell<int64_t>(2, i) == id)
 					{
 						string birthday;
-						cout << "Please input new student birthday: ";
+						if (languages == 0)
+						{
+							cout << "Please input new student birthday: ";
+						}
+						else if (languages == 1)
+						{
+							cout << "请输入新的学生出生日期: ";
+						}
 						cin >> birthday;
 						doc.SetCell(4, i, birthday);
 						doc.Save();
@@ -232,12 +298,24 @@ int main()
 					{
 						string subject;
 						int times, score;
-						cout << "Please input subject: ";
-						cin >> subject;
-						cout << "Please input times: ";
-						cin >> times;
-						cout << "Please input score: ";
-						cin >> score;
+						if (languages == 0)
+						{
+							cout << "Please input subject: ";
+							cin >> subject;
+							cout << "Please input times: ";
+							cin >> times;
+							cout << "Please input score: ";
+							cin >> score;
+						}
+						else if (languages == 1)
+						{
+							cout << "请输入科目: ";
+							cin >> subject;
+							cout << "请输入次数: ";
+							cin >> times;
+							cout << "请输入分数: ";
+							cin >> score;
+						}
 						doc.SetCell(5, i, subject);
 						doc.SetCell(6, i, times);
 						doc.SetCell(7, i, score);
