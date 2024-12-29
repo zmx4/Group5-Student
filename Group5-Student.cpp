@@ -6,6 +6,7 @@
 #define endl "\n"
 using namespace std;
 int languages = 0;
+
 struct student
 {
 	string name;
@@ -21,7 +22,7 @@ struct student
 	};
 };
 
-inline void printMenu()
+static inline void printMenu()
 {
 	if (languages == 0)
 	{
@@ -42,7 +43,7 @@ inline void printMenu()
 		cout << "6. 退出" << endl;
 	}
 }
-inline void printSecondMenu()
+static inline void printSecondMenu()
 {
 	if (languages == 0)
 	{
@@ -59,7 +60,7 @@ inline void printSecondMenu()
 		cout << "4. 修改学生科目" << endl;
 	}
 }
-static void printSettingsMenu()
+static inline void printSettingsMenu()
 {
 	if (languages == 0)
 	{
@@ -70,6 +71,13 @@ static void printSettingsMenu()
 		cout << "1. 语言" << endl;
 	}
 }
+
+void recoverCSVfromlog(int backsteps)
+{
+	ofstream outFile("log.log", ios::app);
+
+}
+
 int main()
 {
 	
