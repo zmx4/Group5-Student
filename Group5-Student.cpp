@@ -72,10 +72,35 @@ static inline void printSettingsMenu()
 	}
 }
 
-void recoverCSVfromlog(int backsteps)
+void recoverCSVfromlog(const int &backsteps)
 {
 	ofstream outFile("log.log", ios::app);
+	//to be done
+}
 
+static void writeLog(const string &done,const string &attribute)
+{
+	ofstream outFile("log.log", ios::app);
+	if (outFile.is_open()) {
+		string msg = std::format("[{}] {} {}",
+			chrono::system_clock::now(),
+			done,
+			attribute,
+			"\n");
+		outFile.write(msg.c_str(), msg.size());
+		outFile.close();
+	}
+	else {
+		if (languages == 0)
+		{
+			cout << "Unable to open log file" << endl;
+		}
+		else if (languages == 1)
+		{
+			cout << "无法打开日志文件" << endl;
+		}
+	}
+	
 }
 
 int main()
@@ -176,9 +201,13 @@ int main()
 			doc.SetCell(3, row, stu.age);
 			doc.SetCell(4, row, stu.birthday);
 			doc.Save();
+			string thingDone = "Student added";
+			//writeLog(thingDone, stu.name);
+			
 			ofstream outFile("log.log", ios::app);
 			outFile << "[" << chrono::system_clock::now() << "]" << "Student " << stu.name << " added"<<"age:"<<stu.age<<"birthday:"<<stu.birthday<<"ID:"<<stu.id << endl;
 			outFile.close();
+			
 			break;
 		}
 		case 2:
@@ -194,18 +223,36 @@ int main()
 			}
 			cin >> id;
 			int64_t row = doc.GetRowCount();
+			string RemovedStudentAttribute = "";
 			for (int i = 0; i < row; i++)
 			{
 				if (doc.GetCell<int64_t>(2, i) == id)
 				{
+					RemovedStudentAttribute += "Name";
+					RemovedStudentAttribute = doc.GetCell<string>(1, i);
+					RemovedStudentAttribute += "Age";
+					RemovedStudentAttribute += to_string(doc.GetCell<int>(3, i));
+					RemovedStudentAttribute += "Birthday";
+					RemovedStudentAttribute += doc.GetCell<string>(4, i);
 					doc.RemoveRow(i);
 					doc.Save();
 					break;
 				}
 			}
+			RemovedStudentAttribute = "ID:" + to_string(id) + RemovedStudentAttribute;
+			string thingDone = "Student deleted";
+			//writeLog(thingDone, RemovedStudentAttribute);
+				/*
+				cout << "Name: " << doc.GetCell<string>(1, i) << endl;
+				cout << "ID: " << doc.GetCell<int64_t>(2, i) << endl;
+				cout << "Age: " << doc.GetCell<int>(3, i) << endl;
+				cout << "Birthday: " << doc.GetCell<string>(4, i) << endl;
+				*/
+			
 			ofstream outFile("log.log", ios::app);
 			outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " deleted" << endl;
 			outFile.close();
+			
 			break;
 		}
 		case 3:
