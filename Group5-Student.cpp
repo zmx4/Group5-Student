@@ -6,7 +6,7 @@
 #define endl "\n"
 using namespace std;
 int languages = 0;
-
+// 定义学生结构体
 struct student
 {
 	string name;
@@ -22,6 +22,60 @@ struct student
 	};
 };
 
+class printmenu
+{
+public:
+	void printMenu()
+	{
+		if (languages == 0)
+		{
+			cout << "1. Add student" << endl;
+			cout << "2. Delete student" << endl;
+			cout << "3. Modify student" << endl;
+			cout << "4. Query student" << endl;
+			cout << "5. Settings" << endl;
+			cout << "6. Exit" << endl;
+		}
+		else if (languages == 1)
+		{
+			cout << "1. 添加学生" << endl;
+			cout << "2. 删除学生" << endl;
+			cout << "3. 修改学生" << endl;
+			cout << "4. 查询学生" << endl;
+			cout << "5. 设置" << endl;
+			cout << "6. 退出" << endl;
+		}
+	}
+	void printSecondMenu()
+	{
+		if (languages == 0)
+		{
+			cout << "1. Modify student id" << endl;
+			cout << "2. Modify student name" << endl;
+			cout << "3. Modify student birthday" << endl;
+			cout << "4. Modify student subject" << endl;
+		}
+		else if (languages == 1)
+		{
+			cout << "1. 修改学生学号" << endl;
+			cout << "2. 修改学生姓名" << endl;
+			cout << "3. 修改学生生日" << endl;
+			cout << "4. 修改学生科目" << endl;
+		}
+	}
+	void printSettingsMenu()
+	{
+		if (languages == 0)
+		{
+			cout << "1. Language" << endl;
+		}
+		else if (languages == 1)
+		{
+			cout << "1. 语言" << endl;
+		}
+	}
+};
+/*
 static inline void printMenu()
 {
 	if (languages == 0)
@@ -71,18 +125,19 @@ static inline void printSettingsMenu()
 		cout << "1. 语言" << endl;
 	}
 }
+*/
 
 void recoverCSVfromlog(const int &backsteps)
 {
 	ofstream outFile("log.log", ios::app);
 	//to be done
 }
-
+// 写入日志
 static void writeLog(const string &done,const string &attribute)
 {
 	ofstream outFile("log.log", ios::app);
 	if (outFile.is_open()) {
-		string msg = std::format("[{}] {} {}",
+		string msg = std::format("\n[{}] {} {}",
 			chrono::system_clock::now(),
 			done,
 			attribute,
@@ -102,6 +157,8 @@ static void writeLog(const string &done,const string &attribute)
 	}
 	
 }
+// 创建 printmenu 对象
+printmenu menu;
 
 int main()
 {
@@ -159,9 +216,11 @@ int main()
 
 	while (true)
 	{
-		printMenu();
+		menu.printMenu();
+		// 选择操作
 		int choice;
 		cin >> choice;
+		// 根据选择的操作进行相应的操作
 		switch (choice)
 		{
 		case 1:
@@ -257,7 +316,7 @@ int main()
 		}
 		case 3:
 		{
-			printSecondMenu();
+			menu.printSecondMenu();
 			int opearation; cin >> opearation;
 			switch (opearation)
 			{
@@ -442,7 +501,7 @@ int main()
 		}
 		case 5:
 		{
-			printSettingsMenu();
+			menu.printSettingsMenu();
 			int settingsChoice;
 			cin >> settingsChoice;
 			switch (settingsChoice)
@@ -505,6 +564,8 @@ int main()
 					ofstream outLog("log.log", ios::app);
 					outLog << "[" << chrono::system_clock::now() << "]" << "Language had been switched to Chinese" << endl;
 					outLog.close();
+					//重启程序
+					
 					break;
 				}
 				default:
