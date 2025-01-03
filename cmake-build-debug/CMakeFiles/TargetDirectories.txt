@@ -1,0 +1,3 @@
+/mnt/c/Users/Tick/source/repos/Group5-Student/cmake-build-debug/CMakeFiles/Group5-Student.dir
+/mnt/c/Users/Tick/source/repos/Group5-Student/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Tick/source/repos/Group5-Student/cmake-build-debug/CMakeFiles/rebuild_cache.dir

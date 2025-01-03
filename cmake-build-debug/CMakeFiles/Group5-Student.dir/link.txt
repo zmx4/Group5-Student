@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -Wl,--dependency-file=CMakeFiles/Group5-Student.dir/link.d "CMakeFiles/Group5-Student.dir/Group5-Student.cpp.o" -o Group5-Student

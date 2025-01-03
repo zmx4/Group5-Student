@@ -488,9 +488,9 @@ int main()
 					cout << "ID: " << doc.GetCell<int64_t>(2, i) << endl;
 					cout << "Age: " << doc.GetCell<int>(3, i) << endl;
 					cout << "Birthday: " << doc.GetCell<string>(4, i) << endl;
-					cout << "Subject: " << doc.GetCell<string>(5, i) << endl;
-					cout << "Times: " << doc.GetCell<int>(6, i) << endl;
-					cout << "Score: " << doc.GetCell<int>(7, i) << endl;
+					//cout << "Subject: " << doc.GetCell<string>(5, i) << endl;
+					//cout << "Times: " << doc.GetCell<int>(6, i) << endl;
+					//cout << "Score: " << doc.GetCell<int>(7, i) << endl;
 					ofstream outFile("log.log", ios::app);
 					outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " queried" << endl;
 					outFile.close();
