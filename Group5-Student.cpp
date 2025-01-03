@@ -127,6 +127,17 @@ static inline void printSettingsMenu()
 }
 */
 
+// 清屏函数
+static void clearScreen() {
+#ifdef _WIN32
+	system("cls"); // Windows specific
+#else
+	system("clear"); // Unix, Linux, macOS specific
+#endif
+}
+
+
+// 从日志文件中恢复数据
 void recoverCSVfromlog(const int &backsteps)
 {
 	ofstream outFile("log.log", ios::app);
@@ -220,6 +231,7 @@ int main()
 		// 选择操作
 		int choice;
 		cin >> choice;
+		clearScreen();
 		// 根据选择的操作进行相应的操作
 		switch (choice)
 		{
@@ -309,7 +321,7 @@ int main()
 				*/
 			
 			ofstream outFile("log.log", ios::app);
-			outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " deleted" << endl;
+			outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " deleted" << RemovedStudentAttribute << endl;
 			outFile.close();
 			
 			break;
