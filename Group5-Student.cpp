@@ -21,7 +21,7 @@ struct student
 		int score;
 	};
 };
-
+// 定义打印菜单类
 class printmenu
 {
 public:
@@ -231,7 +231,7 @@ int main()
 		// 选择操作
 		int choice;
 		cin >> choice;
-		clearScreen();
+		//clearScreen();
 		// 根据选择的操作进行相应的操作
 		switch (choice)
 		{
@@ -278,7 +278,7 @@ int main()
 			ofstream outFile("log.log", ios::app);
 			outFile << "[" << chrono::system_clock::now() << "]" << "Student " << stu.name << " added"<<"age:"<<stu.age<<"birthday:"<<stu.birthday<<"ID:"<<stu.id << endl;
 			outFile.close();
-			
+			clearScreen();
 			break;
 		}
 		case 2:
@@ -323,7 +323,7 @@ int main()
 			ofstream outFile("log.log", ios::app);
 			outFile << "[" << chrono::system_clock::now() << "]" << "Student " << id << " deleted" << RemovedStudentAttribute << endl;
 			outFile.close();
-			
+			clearScreen();
 			break;
 		}
 		case 3:
@@ -485,6 +485,7 @@ int main()
 				break;
 			}
 			}
+			clearScreen();
 		}
 		case 4:
 		{
