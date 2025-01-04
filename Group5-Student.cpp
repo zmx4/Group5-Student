@@ -442,6 +442,7 @@ int main()
 				}
 				break;
 			}
+				/*
 			case 4:
 			{
 				int64_t id;
@@ -484,8 +485,10 @@ int main()
 				}
 				break;
 			}
+			*/
 			}
 			clearScreen();
+			break;
 		}
 		case 4:
 		{
